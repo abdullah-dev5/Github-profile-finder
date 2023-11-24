@@ -1,4 +1,6 @@
 import React from 'react';
+import Lottie from 'lottie-react';
+
 function NotFound() {
   return (
     <div className='hero flex-1-1-auto flex-col justify-center '>

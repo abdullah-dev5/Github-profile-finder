@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <React.Fragment>
     
-        <footer className=  "h-24 w-full fixed bottom-0 footer p-10 bg-gray-700 text-primary-content footer-center ">
+        <footer className=  "h-24 w-full fixed bottom-0 footer p-10 bg-slate-600 text-primary-content footer-center ">
 
             <div className='flex justify-center text-center text-white  '>
               <div className='h-20 w-20 -py-5' >
