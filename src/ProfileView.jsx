@@ -10,11 +10,11 @@ const ProfileView = () => {
 
   return (
     <>
-      <div className="m-1 mx-20  my-20  flex flex-col justify-center gap-5 rounded ">
-        <div className=" flex flex-row justify-start basis-96  gap-5 flex-nowrap  h-96 p-4 bg-gray-100 border-2 border-black rounded-md shadow-lg ">
-          <div className="h-88 w-96 flex flex-col gap-2 items-center bg-gray-300 p-1 rounded-lg shadow-md px-1">
+      <div className="m-1 mx-20  my-20  flex flex-col justify-center gap-5 rounded flex-wrap ">
+        <div className=" flex flex-row justify-start basis-96  gap-5 flex-wrap w-11/12  h-96 p-4 bg-gray-100 border-2 border-black rounded-md shadow-lg ">
+          <div className="h-88 w-72 flex flex-col gap-2 items-center bg-gray-300 p-1 rounded-lg shadow-md px-1">
             <img
-              className="m-1 h-96 w-96 object-cover rounded "
+              className="m-1 h-72 w-72 object-cover rounded "
               src={user.avatar_url}
               alt=""
             />
@@ -22,13 +22,12 @@ const ProfileView = () => {
               {user.login}
             </output>
           </div>
-          <div className=" p-2 flex  flex-col gap-5  justify-between bg-gray-300  rounded  ">
+          <div className=" flex-grow  p-2 flex  flex-col gap-5  justify-between bg-gray-300  rounded w-96 ">
             <div>
               <h1 className="p-2 text-3xl  font-semibold">{user.name} </h1>
-              <p className="p-2 text-lg">
-                {" "}
-                {user.bio} <br />{" "}
-              </p>
+              
+              <p class="relative  font-mono before:absolute before:inset-0 before:animate-typewriter before:bg-gray-300 whitespace-normal">{user.bio}</p>
+
             </div>
             <div className="flex flex-row justify-start gap-5 text-lg font-mono">
               <div className=" flex flex-row justify-center gap-2 px-2 ">
