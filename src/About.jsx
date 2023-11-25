@@ -11,7 +11,7 @@ const About = () => {
         </p>
         <div className='mx-56 m-10 p-10 shadow-md text-center' >
 
-          <a className='text-semibold border-b-2 rounded p-2' href="http://">Visit my Repository</a>
+          <a className='text-semibold border-b-2 rounded p-2' href="https://github.com/abdullah-dev5/Github-profile-finder">Visit my Repository</a>
             </div>  
    </div>
    </React.Fragment>
