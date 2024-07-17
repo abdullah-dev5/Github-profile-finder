@@ -1,21 +1,14 @@
-import React from 'react'
-import { FiCodepen } from "react-icons/fi";
-const Footer = () => {
+import { Typography } from "@material-tailwind/react";
+ export 
+ default  function SimpleFooter() {
   return (
-    <React.Fragment>
-    
-        <footer className=  "h-24 w-full fixed bottom-0 footer p-10 bg-slate-600 text-primary-content footer-center ">
-
-            <div className='flex justify-center text-center text-white  '>
-              <div className='h-20 w-20 -py-5' >
-              <FiCodepen className='h-10 w-20' />
-              </div>
-                <p></p> Copyright © 2023 All rights reserved
-            </div>
-
-        </footer>
-    </React.Fragment>
+    <footer className="flex fixed bottom-0 p-6 w-full items-center justify-center  bg-slate-900">
+      <Typography color="blue-gray" className="font-normal bg-slate-500 " >
+        &copy; All Rights are Reserved
+      </Typography>
+   
+    </footer>
   );
 }
 
-export default Footer
+

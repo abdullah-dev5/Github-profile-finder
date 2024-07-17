@@ -4,19 +4,23 @@ import Home from './Home'
 import Navbar from './Navbar.jsx'
 import Footer from './Footer.jsx'
 import About from './About.jsx'
-import History from './History.jsx'
 import NotFound from './NotFound.jsx'
 import ProfileView from './ProfileView.jsx'
+import  Location from "./Location.jsx";
+import Map from './Map.jsx'
 const Router = () => {
   return (
     <>
     <Navbar/>
    <Routes>
     <Route  path='/' element = { <Home/>} />
+    <Route  path='/map' element = { <Map/>} />
+    <Route  path='/loc' element = { <Location/>} />
     
-    <Route  path='/history' element = { <History/>} /> 
-    <Route  path='/about' element = { <About/>} />
+
+        <Route  path='/about' element = { <About/>} />
     <Route  path='/*' element = { <NotFound/>} />
+
    { <Route path='/profileview' element ={<ProfileView/>} /> }
    </Routes>
    <Footer/>

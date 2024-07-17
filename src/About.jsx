@@ -1,22 +1,30 @@
-import React from 'react'
+import React from 'react';
+import useUserStore from "./Store";
 
 const About = () => {
+  const { searchUser, fetchedUser,locationFetched } = useUserStore();
+ 
+    console.log(fetchedUser)
+    console.log("Searching"+searchUser)
+    console.log("location getting "+locationFetched.longitude)
+
   return (
-        <React.Fragment>   
-        
-     <div className='m-10 p-5 my-20 flex-1-1-auto flex-col justify-center  items-center gap-10'>
-        <h1 className='m-10 font-semibold text-6xl'>Github Finder</h1>
-        <p className='mb-4 text-2xl font-light m-10'>A React app to search GitHub profiles and see profile details.
-        This project is part of the MERN BootCamp.
-        </p>
-        <div className='mx-56 m-10 p-10 shadow-md text-center' >
+    <div className="flex flex-col items-center justify-center gap-10 py-20 px-10 ">
+      <h1 className="font-semibold text-6xl text-center">Github Profile Finder</h1>
+      <p className="text-2xl font-light text-center max-w-3xl">
+        A React app to search GitHub profiles and view profile details. This project is part of the MERN BootCamp.
+      </p>
+      
+      <div className="shadow-md p-10 rounded-lg text-center bg-white max-w-2xl">
+        <a
+          href="https://github.com/abdullah-dev5/Github-profile-finder"
+          className="text-blue-500 font-semibold hover:underline"
+        >
+          Visit my Repository
+        </a>
+      </div>
+    </div>
+  );
+};
 
-          <a className='text-semibold border-b-2 rounded p-2' href="https://github.com/abdullah-dev5/Github-profile-finder">Visit my Repository</a>
-            </div>  
-   </div>
-   </React.Fragment>
-
-    )
-}
-
-export default About
+export default About;

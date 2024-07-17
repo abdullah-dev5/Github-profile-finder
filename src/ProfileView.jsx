@@ -1,59 +1,100 @@
-import React, { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { SlUserFollowing } from "react-icons/sl";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { HiBuildingOffice2 } from "react-icons/hi2";
-import { SlUserFollow } from "react-icons/sl";
+import { SlUserFollow, SlUserFollowing } from "react-icons/sl";
+
 
 const ProfileView = () => {
   const location = useLocation();
   const [user, setUser] = useState(location.state?.fetchedData || {});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!user.login) {
+      // Fetch user data if not already provided
+      fetchUserData();
+    } else {
+      setLoading(false);
+    }
+  }, [user.login]);
+
+  const fetchUserData = () => {
+    setLoading(true);
+    fetch(`https://api.github.com/users/${location.state.searchUser}`)
+      .then((response) => {
+        if (response.ok) {
+          console.log(response.data)
+          return response.json();
+        }
+        throw new Error("Failed to fetch user data");
+      })
+      .then((data) => {
+        setUser(data);
+        console.log(data)
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        setError(error.message);
+        setLoading(false);
+      });
+  };
+
+  if (loading) {
+    return <p>Loading...</p>; // Optional: Add a loading indicator
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>; // Optional: Display error message
+  }
 
   return (
-    <>
-      <div className="m-1 mx-20  my-20  flex flex-col justify-center gap-5 rounded flex-wrap ">
-        <div className=" flex flex-row justify-start basis-96  gap-5 flex-wrap w-11/12  h-96 p-4 bg-gray-100 border-2 border-black rounded-md shadow-lg ">
-          <div className="h-88 w-72 flex flex-col gap-2 items-center bg-gray-300 p-1 rounded-lg shadow-md px-1">
+    <div className="flex flex-col justify-center items-center my-20 mx-4 sm:mx-20 gap-5">
+      <div className="card w-full max-w-4xl bg-base-100 shadow-xl">
+        <div className="card-body flex flex-col md:flex-row gap-5">
+          <div className="flex flex-col items-center md:w-1/3 bg-gray-300 rounded-lg p-4 shadow-md">
             <img
-              className="m-1 h-72 w-72 object-cover rounded "
+              className="rounded-full w-48 h-48 object-cover"
               src={user.avatar_url}
-              alt=""
+              alt="User Avatar"
             />
-            <output className="text-md font-mono font-medium text-black  p-2 ">
-              {user.login}
-            </output>
+            <h2 className="card-title mt-4 text-center">{user.login}</h2>
           </div>
-          <div className=" flex-grow  p-2 flex  flex-col gap-5  justify-between bg-gray-300  rounded w-96 ">
-            <div>
-              <h1 className="p-2 text-3xl  font-semibold">{user.name} </h1>
-              
-              <p class="relative  font-mono before:absolute before:inset-0 before:animate-typewriter before:bg-gray-300 whitespace-normal">{user.bio}</p>
-
+          <div className="flex-grow p-4 bg-gray-200 rounded-lg shadow-md">
+            <h1 className="text-3xl font-semibold">{user.name}</h1>
+            <p className="mt-2 font-mono whitespace-normal">
+              {user.bio || "No bio available"}
+            </p>
+            <p className="mt-2 font-mono whitespace-normal">
+              {user.location || "No location available"}
+            </p>
+            <div className="mt-4 flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <HiBuildingOffice2 size="1.5em" />
+                <p>Company: {user.company || "Not specified"}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <SlUserFollow size="1.5em" />
+                <p>Followers: {user.followers}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <SlUserFollowing size="1.5em" />
+                <p>Following: {user.following}</p>
+              </div>
             </div>
-            <div className="flex flex-row justify-start gap-5 text-lg font-mono">
-              <div className=" flex flex-row justify-center gap-2 px-2 ">
-                <HiBuildingOffice2 size="2em" />
-
-                <h1>Company : {user.company} </h1>
-              </div>
-              <div className="flex flex-row justify-start gap-3">
-                <SlUserFollow size="2em" />
-                <h1> Follower : {user.followers} </h1>
-              </div>
-              <div className="flex flex-row justify-center gap-3">
-                <SlUserFollowing size="2em" />
-                <h1> Following : {user.following} </h1>
-              </div>
-            </div>
-
-            <div className=" w-44 h-14 border-slate-600 border-1/2 justify-center text-center items-center border-2 rounded-lg p-2 shadow-lg hover:bg-slate-600 hover:text-white ">
-              <a href={user.html_url} className="btn btn-outline">
-                Visit Github Profile{" "}
+            <div className="mt-6">
+              <a
+                href={user.html_url}
+                className="btn btn-outline w-full md:w-auto"
+              >
+                Visit GitHub Profile
               </a>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
