@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Globe from 'globe.gl';
 import useUserStore from './Store';
+import Lottie from 'lottie-react';
+import lottieJson from './assets/locationNotfound.json';
 
 const MergedComponent = () => {
   const { fetchedUser, setLocationFetched, locationFetched } = useUserStore();
@@ -108,6 +110,8 @@ const MergedComponent = () => {
 
       if (globeRef.current) {
         world(globeRef.current);
+        world.width(windowSize.width);
+        world.height(windowSize.height);
       }
     }
   }, [windowSize, locationFetched]);
@@ -119,20 +123,7 @@ const MergedComponent = () => {
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          className="w-16 h-16 text-red-500"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m2 4H6m6-18a9 9 0 100 18 9 9 0 000-18z"
-          />
-        </svg>
+        <Lottie animationData={lottieJson} className="w-32 h-32" />
         <p className="text-xl mt-4">{error}</p>
       </div>
     );
@@ -141,21 +132,11 @@ const MergedComponent = () => {
   return (
     <div>
 
-      <div style={{ margin: 0, height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ margin: 0, height: windowSize.height, width: windowSize.width, overflow: 'hidden', position: 'relative' }}>
         <div ref={globeRef} style={{ height: '100%', width: '100%' }} />
         <button
           onClick={() => navigate(-1)} // Navigate back
-          style={{
-            position: 'absolute',
-            top: '10px',
-            left: '10px',
-            padding: '10px 20px',
-            backgroundColor: 'transparent',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer'
-          }}
+          className="absolute top-4 left-4 px-4 py-2 bg-transparent text-white border-none rounded-md cursor-pointer"
         >
           Back
         </button>

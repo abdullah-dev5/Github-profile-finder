@@ -21,20 +21,7 @@ const About = () => {
         </a>
       </div>
     </div>
-    <div className="flex flex-col justify-center items-center my-20 mx-4 sm:mx-20 gap-5">
-      <div className="card w-full max-w-4xl bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="text-2xl font-semibold mb-4">Location</h2>
-          <div className="bg-gray-200 text-black p-4 rounded-lg shadow-md">
-            <p className="font-mono whitespace-normal">Values from stores</p>
-            <p className="font-mono whitespace-normal">Longitude {locationFetched.longitude}</p>
-            <p className="font-mono whitespace-normal">Longitude {locationFetched.latitude}</p>
-            
-            
-         </div>
-        </div>
-      </div>
-    </div>
+
 </>
 );
 };

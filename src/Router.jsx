@@ -6,7 +6,6 @@ import Footer from './Footer.jsx'
 import About from './About.jsx'
 import NotFound from './NotFound.jsx'
 import ProfileView from './ProfileView.jsx'
-import  Location from "./Location.jsx";
 import Map from './Map.jsx'
 const Router = () => {
   return (
@@ -15,7 +14,6 @@ const Router = () => {
    <Routes>
     <Route  path='/' element = { <Home/>} />
     <Route  path='/map' element = { <Map/>} />
-    <Route  path='/loc' element = { <Location/>} />
     
 
         <Route  path='/about' element = { <About/>} />

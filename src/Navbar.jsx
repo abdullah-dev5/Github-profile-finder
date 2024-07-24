@@ -18,9 +18,6 @@ const Navbar = () => {
                 <NavLink style={({isActive}) => {return isActive ? {color : "red"} : {} }}
                  to ="/map" className='btn btn-ghost btn-md rounded-btn hover:bg-slate-700 text-center rounded p-1 '
                 >MAP</NavLink>
-                <NavLink style={({isActive}) => {return isActive ? {color : "red"} : {} }}
-                 to ="/loc" className='btn btn-ghost btn-md rounded-btn hover:bg-slate-700 text-center rounded p-1 '
-                >LOC</NavLink>
                 
                 <NavLink style={({isActive}) => {return isActive ? {color : "red"} : {} }}
                  to ="/about" className='btn btn-ghost btn-md rounded-btn hover:bg-slate-700 text-center rounded p-1 '
