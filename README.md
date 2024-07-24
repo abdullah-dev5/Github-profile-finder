@@ -16,6 +16,8 @@ Welcome to the GitHub Profile Finder! This is a React-based web application with
 - **Followers and Following Counts:** Get insights into the user's network with the number of followers and following.
 - **Name and Bio:** Learn more about the user through their name and bio.
 - **GitHub Profile Link:** Easily navigate to the user's complete GitHub profile for more details.
+- **Location Geocoding:** Convert user addresses to geographic coordinates using Geoapify.
+- **Globe Display:** Visualize user locations on an interactive globe using the React Globe library.
 
 ## Technologies Used
 
@@ -24,6 +26,8 @@ The GitHub Profile Finder is built using the following technologies:
 - **React:** A JavaScript library for building user interfaces.
 - **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
 - **Vite:** A fast development environment for modern web projects.
+- **Geoapify:** A geocoding API for converting addresses to geographic coordinates (latitude and longitude).
+- **React Globe:** A library for displaying interactive globes in React applications.
 
 ## How to Contribute
 
@@ -35,3 +39,6 @@ If you would like to contribute to the development of GitHub Profile Finder, fol
 4. Push your changes to your fork.
 5. Submit a pull request to the main repository.
 
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
