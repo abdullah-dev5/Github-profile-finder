@@ -14,13 +14,16 @@ const Home = () => {
       .then((response) => {
         console.log("Fetching from git : " + response.data);
         setFetchedUser(response.data);
-       console.log( fetchedUser.location)
       })
       .catch((error) => console.error(error));
   };
-
+  console.log("Address from git api", fetchedUser)
+  
   const redirectProfile = () => {
     navigate("/profileview", { state: { fetchedData: fetchedUser } });
+  
+  
+  
   };
 
   return (
