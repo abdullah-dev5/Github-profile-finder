@@ -7,19 +7,20 @@ import About from './About.jsx'
 import NotFound from './NotFound.jsx'
 import ProfileView from './ProfileView.jsx'
 import Map from './Map.jsx'
+import Compare from './Compare.jsx'
+import Explore from './Explore.jsx'
 const Router = () => {
   return (
     <>
     <Navbar/>
    <Routes>
-    <Route  path='/' element = { <Home/>} />
-    <Route  path='/map' element = { <Map/>} />
-    
-
-        <Route  path='/about' element = { <About/>} />
-    <Route  path='/*' element = { <NotFound/>} />
-
-   { <Route path='/profileview' element ={<ProfileView/>} /> }
+     <Route path='/' element={<Home />} />
+     <Route path='/map' element={<Map />} />
+     <Route path='/compare' element={<Compare />} />
+     <Route path='/explore' element={<Explore />} />
+     <Route path='/about' element={<About />} />
+     <Route path='/profileview' element={<ProfileView />} />
+     <Route path='/*' element={<NotFound />} />
    </Routes>
    <Footer/>
    </>

@@ -7,7 +7,7 @@ import Lottie from 'lottie-react';
 import lottieJson from './assets/locationNotfound.json';
 
 const MergedComponent = () => {
-  const { fetchedUser, setLocationFetched, locationFetched } = useUserStore();
+  const { fetchedUser, setLocationFetched, locationFetched, history } = useUserStore();
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -49,7 +49,10 @@ const MergedComponent = () => {
         console.log("lat", lat);
 
         // Set location in the store after updating the local state
-        setLocationFetched({ latitude: lat, longitude: lon, name: fetchedUser.location });
+        const labelName = fetchedUser.login
+          ? `${fetchedUser.login} · ${fetchedUser.location}`
+          : fetchedUser.location;
+        setLocationFetched({ latitude: lat, longitude: lon, name: labelName });
       } catch (error) {
         console.error('Error fetching location:', error);
         setError(error.message);
@@ -117,29 +120,42 @@ const MergedComponent = () => {
   }, [windowSize, locationFetched]);
 
   if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <Lottie animationData={lottieJson} className="w-32 h-32" />
-        <p className="text-xl mt-4">{error}</p>
+      <div className="pt-24 pb-24 flex justify-center items-center">
+        <p className="text-lg font-medium text-slate-800">Loading location...</p>
       </div>
     );
   }
 
-  return (
-    <div>
+  if (error) {
+    return (
+      <div className="pt-24 pb-24 flex flex-col items-center justify-center">
+        <Lottie animationData={lottieJson} className="w-40 h-40" />
+        <p className="text-xl mt-4 text-slate-800">{error}</p>
+      </div>
+    );
+  }
 
-      <div style={{ margin: 0, height: windowSize.height, width: windowSize.width, overflow: 'hidden', position: 'relative' }}>
+  const locationCount = new Set(
+    history
+      .map((h) => h.location && h.location.trim().toLowerCase())
+      .filter(Boolean)
+  ).size;
+
+  return (
+    <div className="pt-16 pb-16">
+      <div style={{ margin: 0, height: '70vh', width: '100%', overflow: 'hidden', position: 'relative' }}>
         <div ref={globeRef} style={{ height: '100%', width: '100%' }} />
         <button
           onClick={() => navigate(-1)} // Navigate back
-          className="absolute top-4 left-4 px-4 py-2 bg-transparent text-white border-none rounded-md cursor-pointer"
+          className="absolute top-4 left-4 px-4 py-2 bg-slate-900/80 text-white rounded-md cursor-pointer text-sm"
         >
           Back
         </button>
+        <div className="absolute top-4 right-4 px-3 py-2 bg-white/90 rounded-md text-[11px] text-slate-800 shadow">
+          <p>Searched profiles: {history.length}</p>
+          <p>Locations found: {locationCount}</p>
+        </div>
       </div>
     </div>
   );

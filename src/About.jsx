@@ -6,13 +6,14 @@ const About = () => {
  
    
   return (
-<>    <div className="flex flex-col items-center justify-center gap-10 py-20 px-10 ">
-      <h1 className="font-semibold text-6xl text-center">Github Profile Finder</h1>
-      <p className="text-2xl font-light text-center max-w-3xl">
+<>
+    <div className="pt-24 pb-24 px-6 flex flex-col items-center justify-center gap-10">
+      <h1 className="font-semibold text-4xl sm:text-5xl text-center text-slate-900">Github Profile Finder</h1>
+      <p className="text-lg sm:text-2xl font-light text-center max-w-3xl text-slate-700">
         A React app to search GitHub profiles and view profile details. This project is part of the MERN BootCamp.
       </p>
       
-      <div className="shadow-md p-10 rounded-lg text-center bg-white max-w-2xl">
+      <div className="shadow-md p-8 sm:p-10 rounded-lg text-center bg-white max-w-2xl">
         <a
           href="https://github.com/abdullah-dev5/Github-profile-finder"
           className="text-blue-500 font-semibold hover:underline"
